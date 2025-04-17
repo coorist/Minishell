@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykhindou <ykhindou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/15 09:47:12 by ykhindou          #+#    #+#             */
-/*   Updated: 2025/04/17 16:16:41 by ykhindou         ###   ########.fr       */
+/*   Created: 2024/10/25 08:56:55 by ykhindou          #+#    #+#             */
+/*   Updated: 2024/11/03 08:50:07 by ykhindou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int	main(void)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	char	*line;
+	size_t	i;
+	size_t	j;
 
-	while (1)
+	i = 0;
+	if (little[0] == '\0')
+		return ((char *)(big));
+	while (i < len && big[i])
 	{
-		line = readline("Leetshell$ ");
-		if (!line)
+		j = 0;
+		while (little[j] && (i + j) < len)
 		{
-			printf("exit\n");
-			break ;
+			if (big[i + j] == little[j])
+				j++;
+			else
+				break ;
 		}
-		if (*line)
-			add_history(line);
-		free(line);
+		if (little[j] == '\0')
+			return ((char *)(big + i));
+		i++;
 	}
-	clear_history();
-	return (0);
+	return (NULL);
 }

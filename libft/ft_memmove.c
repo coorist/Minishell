@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykhindou <ykhindou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/15 09:47:12 by ykhindou          #+#    #+#             */
-/*   Updated: 2025/04/17 16:16:41 by ykhindou         ###   ########.fr       */
+/*   Created: 2024/10/23 11:10:57 by ykhindou          #+#    #+#             */
+/*   Updated: 2024/10/29 11:01:58 by ykhindou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int	main(void)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	char	*line;
+	unsigned char		*d;
+	const unsigned char	*s;
 
-	while (1)
+	if (dest == src || n == 0)
+		return (dest);
+	d = (unsigned char *)dest;
+	s = (const unsigned char *)src;
+	if (d < s)
 	{
-		line = readline("Leetshell$ ");
-		if (!line)
-		{
-			printf("exit\n");
-			break ;
-		}
-		if (*line)
-			add_history(line);
-		free(line);
+		while (n--)
+			*d++ = *s++;
 	}
-	clear_history();
-	return (0);
+	else
+	{
+		d += n;
+		s += n;
+		while (n--)
+			*(--d) = *(--s);
+	}
+	return (dest);
 }

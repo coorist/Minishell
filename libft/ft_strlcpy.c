@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykhindou <ykhindou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/15 09:47:12 by ykhindou          #+#    #+#             */
-/*   Updated: 2025/04/17 16:16:41 by ykhindou         ###   ########.fr       */
+/*   Created: 2024/10/23 12:46:38 by ykhindou          #+#    #+#             */
+/*   Updated: 2024/11/06 17:35:10 by ykhindou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int	main(void)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	char	*line;
+	unsigned int	i;
+	unsigned int	s_len;
 
-	while (1)
+	s_len = ft_strlen(src);
+	if (size == 0)
+		return (s_len);
+	i = 0;
+	while (i < (size - 1) && src[i])
 	{
-		line = readline("Leetshell$ ");
-		if (!line)
-		{
-			printf("exit\n");
-			break ;
-		}
-		if (*line)
-			add_history(line);
-		free(line);
+		dst[i] = src[i];
+		i++;
 	}
-	clear_history();
-	return (0);
+	dst[i] = '\0';
+	return (s_len);
 }

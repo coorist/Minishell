@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykhindou <ykhindou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/15 09:47:12 by ykhindou          #+#    #+#             */
-/*   Updated: 2025/04/17 16:16:41 by ykhindou         ###   ########.fr       */
+/*   Created: 2024/10/24 12:39:43 by ykhindou          #+#    #+#             */
+/*   Updated: 2024/10/29 11:51:27 by ykhindou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int	main(void)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	char	*line;
+	size_t				i;
+	const unsigned char	*str;
 
-	while (1)
+	i = 0;
+	str = (const unsigned char *)s;
+	while (i < n)
 	{
-		line = readline("Leetshell$ ");
-		if (!line)
-		{
-			printf("exit\n");
-			break ;
-		}
-		if (*line)
-			add_history(line);
-		free(line);
+		if (str[i] == (unsigned char )c)
+			return ((void *)(str + i));
+		i++;
 	}
-	clear_history();
-	return (0);
+	return (NULL);
 }

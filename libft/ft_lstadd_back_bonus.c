@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykhindou <ykhindou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/15 09:47:12 by ykhindou          #+#    #+#             */
-/*   Updated: 2025/04/17 16:16:41 by ykhindou         ###   ########.fr       */
+/*   Created: 2024/10/31 15:27:00 by ykhindou          #+#    #+#             */
+/*   Updated: 2024/11/06 17:13:28 by ykhindou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int	main(void)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	char	*line;
+	t_list	*tmp;
 
-	while (1)
+	if (!new || !new)
+		return ;
+	if (*lst == NULL)
 	{
-		line = readline("Leetshell$ ");
-		if (!line)
-		{
-			printf("exit\n");
-			break ;
-		}
-		if (*line)
-			add_history(line);
-		free(line);
+		*lst = new;
+		return ;
 	}
-	clear_history();
-	return (0);
+	tmp = *lst;
+	while ((tmp)->next)
+		tmp = tmp->next;
+	tmp->next = new;
 }

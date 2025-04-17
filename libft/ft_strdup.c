@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykhindou <ykhindou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/15 09:47:12 by ykhindou          #+#    #+#             */
-/*   Updated: 2025/04/17 16:16:41 by ykhindou         ###   ########.fr       */
+/*   Created: 2024/10/26 09:13:41 by ykhindou          #+#    #+#             */
+/*   Updated: 2024/11/06 16:25:47 by ykhindou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int	main(void)
+char	*ft_strdup(const char *s1)
 {
-	char	*line;
+	char		*dup;
+	size_t		len;
+	size_t		i;
 
-	while (1)
+	len = ft_strlen(s1);
+	dup = (char *)malloc((len + 1) * sizeof(char));
+	if (!dup)
+		return (NULL);
+	i = 0;
+	while (s1[i])
 	{
-		line = readline("Leetshell$ ");
-		if (!line)
-		{
-			printf("exit\n");
-			break ;
-		}
-		if (*line)
-			add_history(line);
-		free(line);
+		dup[i] = s1[i];
+		i++;
 	}
-	clear_history();
-	return (0);
+	dup[i] = '\0';
+	return (dup);
 }

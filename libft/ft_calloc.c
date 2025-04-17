@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykhindou <ykhindou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/15 09:47:12 by ykhindou          #+#    #+#             */
-/*   Updated: 2025/04/17 16:16:41 by ykhindou         ###   ########.fr       */
+/*   Created: 2024/10/25 18:39:09 by ykhindou          #+#    #+#             */
+/*   Updated: 2024/11/03 08:49:16 by ykhindou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-int	main(void)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	char	*line;
+	void	*alloc;
 
-	while (1)
-	{
-		line = readline("Leetshell$ ");
-		if (!line)
-		{
-			printf("exit\n");
-			break ;
-		}
-		if (*line)
-			add_history(line);
-		free(line);
-	}
-	clear_history();
-	return (0);
+	if (nmemb != 0 && (size > SIZE_MAX / nmemb))
+		return (NULL);
+	alloc = malloc(nmemb * size);
+	if (alloc == NULL)
+		return (NULL);
+	ft_bzero(alloc, nmemb * size);
+	return (alloc);
 }
