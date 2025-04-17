@@ -6,7 +6,7 @@
 /*   By: ykhindou <ykhindou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 09:46:09 by ykhindou          #+#    #+#             */
-/*   Updated: 2025/04/17 16:16:19 by ykhindou         ###   ########.fr       */
+/*   Updated: 2025/04/17 16:28:58 by ykhindou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,28 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <stdlib.h>
+
+typedef enum e_token_type
+{
+	TOK_WORD,
+	TOK_PIPE,
+	TOK_AND,
+	TOK_OR,
+	TOK_REDIR_IN,// <
+	TOK_REDIR_OUT,// >
+	TOK_REDIR_APPEND,// >>
+	TOK_REDIR_HEREDOC,// <<
+	TOK_OPEN_PAREN,// (
+	TOK_CLOSE_PAREN,// )
+	TOK_EOF
+}	t_token_type;
+
+typedef struct s_token
+{
+	t_token_type	type;
+	char			*value; // e.g., "echo", ">", "hello", "$USER"
+	struct s_token	*next;
+}	t_token;
 
 typedef enum e_node_type
 {
